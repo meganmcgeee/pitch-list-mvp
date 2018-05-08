@@ -2,7 +2,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
-import misaka
+#import misaka
 
 from groups.models import Group
 # Create your models here.
@@ -12,7 +12,7 @@ User = get_user_model()
 
 class Post(models.Model):
     user = models.ForeignKey(User, related_name='posts')
-    created_at = models.DateTimeField(auth_now=True)
+    created_at = models.DateTimeField(auto_now=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
     group = models.ForeignKey(Group, related_name='posts', null=True, blank=True)
@@ -25,7 +25,7 @@ class Post(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('post:single', kwargs={'username': self.user.username, 'pk':self.pk})
+        return reverse('posts:single', kwargs={'username': self.user.username, 'pk':self.pk})
 
     class Meta:
         ordering = ['-created_at']

@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.config.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
+from django.contrib import messages
 
 from django.http import Http404
 from django.views import generic
@@ -16,19 +17,19 @@ User = get_user_model()
 # Create your views here.
 class PostList(SelectRelatedMixin, generic.ListView):
     model = models.Post
-    selected_related = ('user', 'group')
+    select_related = ('user', 'group')
 
-class UserPosts(generic.ListView):
+class UserPost(generic.ListView):
     model = models.Post
     template_name = 'posts/user_post_list.html'
 
     def get_queryset(self):
         try:
-            self.post.user = User.objects.prefetch_related('posts').get(username_iexactt=self.kwargs.get('username'))
+            self.post_user = User.objects.prefetch_related('posts').get(username__iexact=self.kwargs.get('username'))
         except User.DoesNotExist:
             raise Http404
         else:
-            return self.posts.all()
+            return self.post_user.posts.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,13 +38,13 @@ class UserPosts(generic.ListView):
 
 class PostDetail(SelectRelatedMixin, generic.DetailView):
     model = models.Post
-    selected_related = ('user', 'group')
+    select_related = ('user', 'group')
 
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(user__username__iexact=self.kwargs.get('username'))
 
-class CreatePost(LoginRequiredMixin, SelectedRelatedMixin, generic.CreateView):
+class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 
     fields = ('message', 'group')
     model = models.Post
@@ -56,7 +57,7 @@ class CreatePost(LoginRequiredMixin, SelectedRelatedMixin, generic.CreateView):
 
 class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
     model = models.Post
-    selected_related = ('user', 'group')
+    select_related = ('user', 'group')
     success_url = reverse_lazy('posts:all')
 
     def get_queryset(self):

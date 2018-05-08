@@ -1,8 +1,9 @@
 from django.db import models
-from django.util.text import slugify
+from django.utils.text import slugify
+from django.core.urlresolvers import reverse
 
 # Create your models here.
-import misaka
+#import misaka
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
