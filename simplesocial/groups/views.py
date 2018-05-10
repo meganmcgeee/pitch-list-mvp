@@ -36,7 +36,7 @@ class JoinGroup(LoginRequiredMixin, generic.RedirectView):
         else:
             messages.success(self.request, 'You are now a member!')
 
-        return super().get(request, *args, **kwargs)
+        return super(JoinGroup, self).get(request, *args, **kwargs)
 
 class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
 
@@ -55,4 +55,4 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
             membership.delete()
             messages.success(self.request, 'You have left the group!')
 
-        return super().get(request, *args, **kwargs)
+        return super(LeaveGroup, self).get(request, *args, **kwargs)
