@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 
-class TestPage(TemplateView):
-    template_name = 'test.html'
+class LandingPage(TemplateView):
+    template_name = 'landing.html'
 
 class ThanksPage(TemplateView):
     template_name = 'thanks.html'    
