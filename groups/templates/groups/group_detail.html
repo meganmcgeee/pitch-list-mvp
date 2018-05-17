@@ -6,11 +6,11 @@
   <div class="content">
 
     {% if user in group.members.all %}
-      <a href="{% url 'groups:leave' slug=group.slug %}" class='btn btn-lg btn-fill btn-warning'>
+      <a href="{% url 'groups:leave' slug=group.slug %}" class='btn btn-lg btn-fill'>
         <span class='glyphicon glyphicon-remove-circle'>Unfollow</span>
       </a>
     {% else %}
-    <a href="{% url 'groups:join' slug=group.slug %}" class='btn btn-lg btn-fill btn-warning'>
+    <a href="{% url 'groups:join' slug=group.slug %}" class='btn btn-lg btn-fill'>
       <span class='glyphicon glyphicon-ok-circle'>Follow</span>
     </a>
     {% endif %}
