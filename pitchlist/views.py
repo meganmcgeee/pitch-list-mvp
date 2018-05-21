@@ -8,3 +8,11 @@ class ThanksPage(TemplateView):
 
 class HomePage(TemplateView):
     template_name = 'index.html'
+
+
+class TermsPage(TemplateView):
+    template_name = 'tos.html'
+
+
+class PrivacyPage(TemplateView):
+    template_name = 'privacy.html'

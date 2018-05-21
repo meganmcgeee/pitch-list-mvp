@@ -1,4 +1,4 @@
-"""simplesocial URL Configuration
+"""pitchlist URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -25,5 +25,7 @@ urlpatterns = [
     url(r'^landing/$', views.LandingPage.as_view(), name='landing'),
     url(r'^thanks/$', views.ThanksPage.as_view(), name='thanks'),
     url(r'^posts/', include('posts.urls', namespace='posts')),
-    url(r'^groups/', include('groups.urls', namespace='groups'))
+    url(r'^groups/', include('groups.urls', namespace='groups')),
+    url(r'^terms/', views.TermsPage.as_view(), name='terms'),
+    url(r'^privacy/', views.PrivacyPage.as_view(), name='privacy')
 ]

@@ -3,16 +3,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Pitchlist.</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Cutive" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'simplesocial/css/master.css'  %}">
+    <link rel="stylesheet" href="{% static 'pitchlist/css/master.css'  %}">
 
   </head>
 
@@ -22,13 +22,13 @@
           <a class="navbar-brand" href="{% url 'home' %}">P.</a>
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
-              <li> <a href="{% url 'posts:create' %}">Post</a> </li>
-              <li> <a href="{% url 'groups:all' %}">Groups</a> </li>
               <li> <a href="{% url 'groups:create' %}">Create List</a> </li>
+              <li>
+                <a href="">Search Lists</a>
+              </li>
               <li> <a href="{% url 'accounts:logout' %}">Logout</a> </li>
             {% else %}
-              <li> <a href="{% url 'groups:all' %}">Lists</a> </li>
-              <li> <a href="{% url 'accounts:login' %}">Log In</a> </li>
+              <!-- <li> <a href="{% url 'accounts:login' %}">Log In</a> </li> -->
               <li> <a href="{% url 'accounts:signup' %}">Sign Up</a> </li>
             {% endif %}
           </ul>
@@ -40,9 +40,12 @@
 
         {% endblock %}
       </div>
-
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+      <a href="{% url 'privacy' %} ">Privacy Policy</a>
+      <a href="{% url 'terms' %} ">Terms and Conditions</a>
+    </nav>
   </body>
-  <script type="text/javascript" src="{% static 'simplesocial/js/master.js' %}">
+  <script type="text/javascript" src="{% static 'pitchlist/js/master.js' %}">
 
   </script>
 </html>

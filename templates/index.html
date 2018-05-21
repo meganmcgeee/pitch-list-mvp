@@ -4,8 +4,13 @@
     <div class="branding">
       <h1>Pitchlist.</h1>
       <h2>Crowd-sourced media intelligence made for publicists by publicists.</h2>
-      <button type="button" class="btn btn-light">Sign In</button>
-      <button type="button" class="btn btn-light">Learn More</button>
+      <a href="{% url 'accounts:login' %}">
+        <button type="button" class="btn btn-light">Sign In</button>
+      </a>
+      <a href="{% url 'accounts:signup' %}">
+        <button type="button" class="btn btn-light">Learn More</button>
+      </a>
     </div>
+    <div class="threeblocks"></div>
 
   {% endblock %}
