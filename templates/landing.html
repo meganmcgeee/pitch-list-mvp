@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>You are now logged in!</h1>
+  <h1>Welcome back, Megan.</h1>
+  <div class="container">
+    <ul>
+      <li>
+        <a href="{% url 'posts:create' %}">Post</a>
+      </li>
+      <li>
+        <a href="{% url 'groups:all' %}">Groups</a>
+      </li>
+    </ul>
+  </div>
   <div class="media">
     <img class="mr-3" src="..." alt="Generic placeholder image">
     <div class="media-body">
-      <h5 class="mt-0">Media heading</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-      vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
-      faucibus.
+      <h5 class="mt-0">Sally Publicist</h5>
+      has added a new list.
     </div>
   </div>
   <div class="media">
